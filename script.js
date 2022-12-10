@@ -66,6 +66,16 @@ buttonForm.addEventListener("click", function (e) {
   const name = inputName.value.toLowerCase();
   const password = inputPassword.value.toLowerCase();
 
+  participants.every((_, index) => {
+    if (name === participants[index].name) {
+      console.log(name);
+      console.log(participants[index].name);
+      // return false;
+    } else {
+      console.log("Vc não está participando do amigo secreto 😥");
+      // return false;
+    }
+  });
   // loop the array procurando pelo .name, se é igual, testa a senha, se a senha for igual, mostra quem pegou
   // se encontrar o nome e a senha não, mensagem de senha errada.
   // se não encontrar nome, nome inválido..
