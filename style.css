@@ -9,16 +9,19 @@ html {
   font-size: 62.5%;
 }
 
-.container {
+.container,
+.result {
   text-align: center;
   margin: 0 auto;
 }
-.container__run {
+.container__run,
+.result__run {
   padding: 1rem 2rem;
   font-size: 2rem;
   margin-bottom: 2rem;
 }
-.container__text {
+.container__text,
+.result__text {
   font-size: 2rem;
   margin-bottom: 1rem;
 }/*# sourceMappingURL=style.css.map */

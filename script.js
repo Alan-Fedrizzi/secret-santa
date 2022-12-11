@@ -4,6 +4,7 @@
 const buttonRun = document.querySelector(".container__run");
 const buttonForm = document.querySelector(".form__button");
 const container = document.querySelector(".container");
+const result = document.querySelector(".result");
 const inputName = document.getElementById("name");
 const inputPassword = document.getElementById("password");
 
@@ -50,11 +51,30 @@ const draw = function () {
     }
     participants[index].secretSanta = participantsCopy[number].name;
     participantsCopy.splice(number, 1);
-    console.log(participants);
 
     const html = `<p class="container__text">${participants[index].name} tirou ${participants[index].secretSanta}!</p>   `;
     container.insertAdjacentHTML("beforeend", html);
   });
+};
+
+const checkUserPassword = function (user, pass) {
+  const [userArray] = participants.filter((obj) => obj.name.includes(user));
+
+  if (!userArray) {
+    console.log(
+      "Desculpe, mas você não está participando do amigo sercreto 😥"
+    );
+    return;
+  }
+
+  if (userArray.password === pass) {
+    const html = `<p class="result__text">${userArray.name}, você tirou ${userArray.secretSanta}!</p>   `;
+    result.insertAdjacentHTML("beforeend", html);
+  } else {
+    console.log("Senha incorreta 😥");
+  }
+
+  return userArray;
 };
 
 // loop array - assign secret santa
@@ -63,20 +83,8 @@ buttonRun.addEventListener("click", draw);
 // form - checking information
 buttonForm.addEventListener("click", function (e) {
   e.preventDefault();
-  const name = inputName.value.toLowerCase();
-  const password = inputPassword.value.toLowerCase();
+  const user = inputName.value.toLowerCase();
+  const pass = inputPassword.value;
 
-  participants.every((_, index) => {
-    if (name === participants[index].name) {
-      console.log(name);
-      console.log(participants[index].name);
-      // return false;
-    } else {
-      console.log("Vc não está participando do amigo secreto 😥");
-      // return false;
-    }
-  });
-  // loop the array procurando pelo .name, se é igual, testa a senha, se a senha for igual, mostra quem pegou
-  // se encontrar o nome e a senha não, mensagem de senha errada.
-  // se não encontrar nome, nome inválido..
+  checkUserPassword(user, pass);
 });
