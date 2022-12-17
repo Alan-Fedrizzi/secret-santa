@@ -6,33 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="style.css" />
     <title>Secret Santa</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <section class="container">
-      <button class="container__run">Run!</button>
-    </section>
+    <main class="container">
+      <button class="run button">Run!</button>
 
-    <form class="form">
-      <label class="form__label" for="name">Nome:</label>
-      <input
-        class="form__input"
-        id="name"
-        type="text"
-        placeholder="Digite seu nome"
-        required
-      />
-      <label class="form__label" for="password">Senha: </label>
-      <input
-        class="form__input"
-        id="password"
-        type="text"
-        placeholder="Digite sua senha"
-        required
-      />
-      <button class="form__button">Submit</button>
-    </form>
+      <section class="section">
+        <div class="section__header">
+          <h1 class="section__heading">Família Fedrizzi</h1>
+          <h2 class="section__subheading">Amigo secreto</h2>
+        </div>
+        <form class="form">
+          <div class="form__grid">
+            <label class="form__label" for="name">Nome:</label>
+            <input
+              class="form__input"
+              id="name"
+              type="text"
+              placeholder="Digite seu nome"
+              required
+            />
+            <label class="form__label" for="password">Senha: </label>
+            <input
+              class="form__input"
+              id="password"
+              type="text"
+              placeholder="Digite sua senha"
+              required
+            />
+          </div>
+          <div class="form__button-container">
+            <button class="form__button button" id="form-clear" type="button">
+              Clear
+            </button>
+            <button class="form__button button" id="form-submit">Submit</button>
+          </div>
+        </form>
 
-    <section class="result"></section>
+        <div class="section__result"></div>
+      </section>
+    </main>
 
     <script src="script.js"></script>
   </body>

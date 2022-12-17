@@ -1,3 +1,15 @@
+:root {
+  --green: #69db7c;
+  --green-dark: #51cf66;
+  --green-light: #8ce99a;
+  --red: #f03e3e;
+  --red-dark: #c92a2a;
+  --red-light: #ff6b6b;
+  --light: #f1f3f5;
+  --dark: #343a40;
+  --medium: #adb5bd;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,21 +19,220 @@
 html {
   /* 10px / 16px = 0.625 = 62.5% */
   font-size: 62.5%;
+
+  @media only screen and (max-width: 400px) {
+    font-size: 50%;
+  }
 }
 
-.container,
-.result {
-  text-align: center;
-  margin: 0 auto;
+body {
+  background-image: linear-gradient(
+    to right bottom,
+    var(--green-light),
+    var(--green-dark)
+  );
+  font-family: "Roboto", sans-serif;
+}
 
-  &__run {
-    padding: 1rem 2rem;
-    font-size: 2rem;
-    margin-bottom: 2rem;
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  cursor: pointer;
+  background-color: var(--red);
+  color: var(--light);
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+
+  &:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 5px 5px var(--dark);
   }
 
-  &__text {
+  &:active {
+    transform: translateY(0);
+    box-shadow: initial;
+  }
+}
+
+.run {
+  font-size: 2rem;
+  background-color: var(--red);
+  color: var(--light);
+  padding: 1rem 2rem;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.section {
+  width: 100%;
+  max-width: 40rem;
+  margin: 3rem auto 0;
+  border-radius: 20px;
+  background-color: var(--light);
+  overflow: hidden;
+  box-shadow: 0 15px 15px var(--dark);
+
+  &__header {
+    background-image: linear-gradient(
+      to right bottom,
+      var(--red-light),
+      var(--red-dark)
+    );
+    padding: 3rem 3rem 2rem;
+  }
+
+  &__heading {
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    background-color: var(--light);
+    color: var(--dark);
+    transform: skew(-10deg, -10deg);
+    animation: justOpacity 2s ease-out;
+  }
+
+  &__subheading {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    letter-spacing: 5px;
+    color: var(--light);
+    animation: moveInRight 1s ease-out;
+  }
+
+  &__result {
+    text-align: center;
+    margin: 0 auto;
+    opacity: 0;
+    transition: all 0.7s;
+
+    &__text {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.form {
+  padding: 2rem 3rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+  animation: moveInBottom 0.5s ease-out 0.5s;
+  animation-fill-mode: backwards;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__label {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-right: 1rem;
+  }
+
+  &__input {
+    font-family: inherit;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--dark);
+
+    &:focus {
+      outline: 2px solid var(--green-dark);
+    }
+
+    &::-webkit-input-placeholder {
+      color: var(--medium);
+    }
+  }
+
+  &__button-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  &__button {
+    font-size: 1.6rem;
+    padding: 0.8rem 1.6rem;
+  }
+}
+
+.visible {
+  opacity: 1;
+}
+
+// animations
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes justOpacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

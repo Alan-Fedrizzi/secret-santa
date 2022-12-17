@@ -1,10 +1,11 @@
 "use strict";
 
 // selecting elements
-const buttonRun = document.querySelector(".container__run");
-const buttonForm = document.querySelector(".form__button");
+const buttonRun = document.querySelector(".run");
+const buttonSubmit = document.getElementById("form-submit");
+const buttonClear = document.getElementById("form-clear");
 const container = document.querySelector(".container");
-const result = document.querySelector(".result");
+const result = document.querySelector(".section__result");
 const inputName = document.getElementById("name");
 const inputPassword = document.getElementById("password");
 
@@ -12,23 +13,18 @@ const inputPassword = document.getElementById("password");
 const participants = [
   {
     name: "alan",
-    password: "1234",
   },
   {
     name: "alex",
-    password: "1234",
   },
   {
     name: "beatriz",
-    password: "1234",
   },
   {
     name: "joeci",
-    password: "1234",
   },
   {
     name: "sarah",
-    password: "1234",
   },
 ];
 
@@ -43,6 +39,11 @@ const randomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+// generate password
+const generatePassword = () => {
+  return randomNumber(0, 9999).toString().padStart(4, "0");
+};
+
 const draw = function () {
   participants.forEach((_, index) => {
     let number = randomNumber(0, participantsCopy.length - 1);
@@ -52,9 +53,10 @@ const draw = function () {
     participants[index].secretSanta = participantsCopy[number].name;
     participantsCopy.splice(number, 1);
 
-    const html = `<p class="container__text">${participants[index].name} tirou ${participants[index].secretSanta}!</p>   `;
-    container.insertAdjacentHTML("beforeend", html);
+    // generate user password
+    participants[index].password = generatePassword();
   });
+  console.log(participants);
 };
 
 const checkUserPassword = function (user, pass) {
@@ -68,8 +70,10 @@ const checkUserPassword = function (user, pass) {
   }
 
   if (userArray.password === pass) {
+    result.innerHTML = "";
     const html = `<p class="result__text">${userArray.name}, você tirou ${userArray.secretSanta}!</p>   `;
     result.insertAdjacentHTML("beforeend", html);
+    result.classList.add("visible");
   } else {
     console.log("Senha incorreta 😥");
   }
@@ -81,10 +85,16 @@ const checkUserPassword = function (user, pass) {
 buttonRun.addEventListener("click", draw);
 
 // form - checking information
-buttonForm.addEventListener("click", function (e) {
+buttonSubmit.addEventListener("click", function (e) {
   e.preventDefault();
   const user = inputName.value.toLowerCase();
   const pass = inputPassword.value;
+  inputName.value = inputPassword.value = "";
 
   checkUserPassword(user, pass);
+});
+
+buttonClear.addEventListener("click", function (e) {
+  e.preventDefault();
+  inputName.value = inputPassword.value = "";
 });
