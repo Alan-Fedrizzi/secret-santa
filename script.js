@@ -8,6 +8,10 @@ const container = document.querySelector(".container");
 const result = document.querySelector(".section__result");
 const inputName = document.getElementById("name");
 const inputPassword = document.getElementById("password");
+const modal = document.querySelector(".modal");
+const modalOverlay = document.querySelector(".modal__overlay");
+const modalButton = document.querySelector(".modal__button");
+const buttonClose = document.querySelector(".btn-close");
 
 // participants array
 const participants = [
@@ -81,6 +85,15 @@ const checkUserPassword = function (user, pass) {
   return userArray;
 };
 
+// modal
+const openModal = function () {
+  modal.classList.add("show-modal");
+};
+
+const closeModal = function () {
+  modal.classList.remove("show-modal");
+};
+
 // loop array - assign secret santa
 buttonRun.addEventListener("click", draw);
 
@@ -92,9 +105,21 @@ buttonSubmit.addEventListener("click", function (e) {
   inputName.value = inputPassword.value = "";
 
   checkUserPassword(user, pass);
+
+  openModal();
 });
 
 buttonClear.addEventListener("click", function (e) {
   e.preventDefault();
   inputName.value = inputPassword.value = "";
+});
+
+[modalOverlay, modalButton, buttonClose].forEach((element) => {
+  element.addEventListener("click", closeModal);
+});
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && modal.classList.contains("show-modal")) {
+    closeModal();
+  }
 });

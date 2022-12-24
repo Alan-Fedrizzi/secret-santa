@@ -56,6 +56,11 @@ body {
   transform: translateY(0);
   box-shadow: initial;
 }
+.button--secondary {
+  background-color: var(--light);
+  color: var(--red);
+  outline: solid 3px var(--red);
+}
 
 .run {
   font-size: 2rem;
@@ -70,7 +75,7 @@ body {
 .section {
   width: 100%;
   max-width: 40rem;
-  margin: 3rem auto 0;
+  margin: auto 0;
   border-radius: 20px;
   background-color: var(--light);
   overflow: hidden;
@@ -164,6 +169,133 @@ body {
 
 .visible {
   opacity: 1;
+}
+
+.modal {
+  transition: all 0.5s;
+  opacity: 0;
+  visibility: hidden;
+}
+.modal__container {
+  z-index: 3;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 40rem;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.modal__header {
+  background-image: linear-gradient(to right bottom, var(--red-light), var(--red-dark));
+  padding: 1rem 2rem 3rem;
+}
+.modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.modal__name-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal__name {
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--light);
+  transform: skew(-10deg, -10deg);
+}
+.modal__content {
+  background-color: var(--light);
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+.modal__text-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+}
+.modal__icon {
+  height: 2.4rem;
+  width: 2.4rem;
+  stroke: var(--dark);
+}
+.modal__text {
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--dark);
+}
+.modal__secret-santa {
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--dark);
+  background-image: linear-gradient(to right bottom, var(--green-light), var(--green-dark));
+  padding: 1rem 3rem;
+}
+.modal__button {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.6rem;
+  padding: 0.8rem 1.6rem;
+  cursor: initial;
+}
+.modal__ok {
+  height: 2.4rem;
+  width: 2.4rem;
+  stroke: var(--light);
+}
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+}
+.show-modal .modal__button,
+.show-modal .modal__overlay,
+.show-modal .btn-close {
+  cursor: pointer;
+}
+
+.btn-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: all 0.3s;
+}
+.btn-close:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+.btn-close__icon {
+  height: 2.4rem;
+  width: 2.4rem;
+  stroke: var(--light);
 }
 
 @-webkit-keyframes moveInLeft {

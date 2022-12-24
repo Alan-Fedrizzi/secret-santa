@@ -60,6 +60,12 @@ body {
     transform: translateY(0);
     box-shadow: initial;
   }
+
+  &--secondary {
+    background-color: var(--light);
+    color: var(--red);
+    outline: solid 3px var(--red);
+  }
 }
 
 .run {
@@ -75,7 +81,7 @@ body {
 .section {
   width: 100%;
   max-width: 40rem;
-  margin: 3rem auto 0;
+  margin: auto 0;
   border-radius: 20px;
   background-color: var(--light);
   overflow: hidden;
@@ -181,6 +187,158 @@ body {
 
 .visible {
   opacity: 1;
+}
+
+.modal {
+  transition: all 0.5s;
+  opacity: 0;
+  visibility: hidden;
+
+  &__container {
+    z-index: 3;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 40rem;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  &__header {
+    background-image: linear-gradient(
+      to right bottom,
+      var(--red-light),
+      var(--red-dark)
+    );
+    padding: 1rem 2rem 3rem;
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__name-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__name {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--light);
+    transform: skew(-10deg, -10deg);
+  }
+
+  &__content {
+    background-color: var(--light);
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  &__text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+
+  &__icon {
+    height: 2.4rem;
+    width: 2.4rem;
+    stroke: var(--dark);
+  }
+
+  &__text {
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dark);
+  }
+
+  &__secret-santa {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dark);
+    background-image: linear-gradient(
+      to right bottom,
+      var(--green-light),
+      var(--green-dark)
+    );
+    padding: 1rem 3rem;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.6rem;
+    padding: 0.8rem 1.6rem;
+    cursor: initial;
+  }
+
+  &__ok {
+    height: 2.4rem;
+    width: 2.4rem;
+    stroke: var(--light);
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    // cursor: pointer;
+  }
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+
+  .modal__button,
+  .modal__overlay,
+  .btn-close {
+    cursor: pointer;
+  }
+}
+
+.btn-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border: none;
+  // cursor: pointer;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: all 0.3s;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  &__icon {
+    height: 2.4rem;
+    width: 2.4rem;
+    stroke: var(--light);
+  }
 }
 
 // animations
