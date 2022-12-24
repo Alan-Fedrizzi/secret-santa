@@ -9,9 +9,7 @@ const result = document.querySelector(".section__result");
 const inputName = document.getElementById("name");
 const inputPassword = document.getElementById("password");
 const modal = document.querySelector(".modal");
-const modalOverlay = document.querySelector(".modal__overlay");
-const modalButton = document.querySelector(".modal__button");
-const buttonClose = document.querySelector(".btn-close");
+const modalContainer = document.querySelector(".modal__container");
 
 // participants array
 const participants = [
@@ -74,10 +72,47 @@ const checkUserPassword = function (user, pass) {
   }
 
   if (userArray.password === pass) {
-    result.innerHTML = "";
-    const html = `<p class="result__text">${userArray.name}, você tirou ${userArray.secretSanta}!</p>   `;
-    result.insertAdjacentHTML("beforeend", html);
-    result.classList.add("visible");
+    modalContainer.innerHTML = "";
+    // const html = `<p class="result__text">${userArray.name}, você tirou ${userArray.secretSanta}!</p>   `;
+    const html = `
+      <div class="modal__header">
+        <div class="modal__close">
+          <button class="btn-close">
+            <ion-icon class="btn-close__icon" name="close"></ion-icon>
+          </button>
+        </div>
+        <div class="modal__name-container">
+          <h1 class="modal__name">${userArray.name}</h1>
+        </div>
+      </div>
+      <div class="modal__content">
+        <div class="modal__text-container">
+          <ion-icon class="modal__icon" name="gift-outline"></ion-icon>
+          <p class="modal__text">você tirou a</p>
+        </div>
+        <h2 class="modal__secret-santa">${userArray.secretSanta}!!</h2>
+        <button class="modal__button button">
+          <svg
+            class="modal__ok"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"
+            />
+          </svg>
+          Ok, entendi
+        </button>
+      </div>
+    `;
+    modalContainer.insertAdjacentHTML("beforeend", html);
+    openModal();
   } else {
     console.log("Senha incorreta 😥");
   }
@@ -88,6 +123,14 @@ const checkUserPassword = function (user, pass) {
 // modal
 const openModal = function () {
   modal.classList.add("show-modal");
+
+  const modalOverlay = document.querySelector(".modal__overlay");
+  const modalButton = document.querySelector(".modal__button");
+  const buttonClose = document.querySelector(".btn-close");
+
+  [modalOverlay, modalButton, buttonClose].forEach((element) => {
+    element.addEventListener("click", closeModal);
+  });
 };
 
 const closeModal = function () {
@@ -105,17 +148,11 @@ buttonSubmit.addEventListener("click", function (e) {
   inputName.value = inputPassword.value = "";
 
   checkUserPassword(user, pass);
-
-  openModal();
 });
 
 buttonClear.addEventListener("click", function (e) {
   e.preventDefault();
   inputName.value = inputPassword.value = "";
-});
-
-[modalOverlay, modalButton, buttonClose].forEach((element) => {
-  element.addEventListener("click", closeModal);
 });
 
 document.addEventListener("keydown", function (e) {
