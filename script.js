@@ -14,19 +14,24 @@ const modalContainer = document.querySelector(".modal__container");
 // participants array
 const participants = [
   {
-    name: "alan",
+    nameFrom: "alan",
+    emailFrom: "alanfedrizzi@gmail.com",
   },
   {
-    name: "alex",
+    nameFrom: "alex",
+    emailFrom: "alexfedrizzi@gmail.com",
   },
   {
-    name: "beatriz",
+    nameFrom: "beatriz",
+    emailFrom: "beatrizferronatofedrizzi@gmail.com",
   },
   {
-    name: "joeci",
+    nameFrom: "joeci",
+    emailFrom: "jobeasa49@gmail.com",
   },
   {
-    name: "sarah",
+    nameFrom: "sarah",
+    emailFrom: "sarah.fedrizzi@gmail.com",
   },
 ];
 
@@ -49,16 +54,23 @@ const generatePassword = () => {
 const draw = function () {
   participants.forEach((_, index) => {
     let number = randomNumber(0, participantsCopy.length - 1);
-    while (participants[index].name === participantsCopy[number].name) {
+    while (participants[index].nameFrom === participantsCopy[number].nameFrom) {
       number = randomNumber(0, participantsCopy.length - 1);
     }
-    participants[index].secretSanta = participantsCopy[number].name;
+    participants[index].nameTo = participantsCopy[number].nameFrom;
+    participants[index].emailTo = participantsCopy[number].emailFrom;
     participantsCopy.splice(number, 1);
 
     // generate user password
-    participants[index].password = generatePassword();
+    // participants[index].password = generatePassword();
   });
   console.log(participants);
+
+  // para usar firebase, tenho que criar um projeto angular, para ter o HttpClient!!!!!!!!!!!!!!!
+  // https://secret-santa-13883-default-rtdb.europe-west1.firebasedatabase.app/
+  // enviar para firebase for storage e conferência
+
+  // enviar email - sendgrid
 };
 
 const checkUserPassword = function (user, pass) {
