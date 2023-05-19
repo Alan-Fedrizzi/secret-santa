@@ -14,24 +14,24 @@ const modalContainer = document.querySelector(".modal__container");
 // participants array
 const participants = [
   {
-    nameFrom: "alan",
-    emailFrom: "alanfedrizzi@gmail.com",
+    nameFrom: "",
+    emailFrom: "",
   },
   {
-    nameFrom: "alex",
-    emailFrom: "alexfedrizzi@gmail.com",
+    nameFrom: "",
+    emailFrom: "",
   },
   {
-    nameFrom: "beatriz",
-    emailFrom: "beatrizferronatofedrizzi@gmail.com",
+    nameFrom: "",
+    emailFrom: "",
   },
   {
-    nameFrom: "joeci",
-    emailFrom: "jobeasa49@gmail.com",
+    nameFrom: "",
+    emailFrom: "",
   },
   {
-    nameFrom: "sarah",
-    emailFrom: "sarah.fedrizzi@gmail.com",
+    nameFrom: "",
+    emailFrom: "",
   },
 ];
 
