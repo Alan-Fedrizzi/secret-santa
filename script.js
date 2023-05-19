@@ -67,7 +67,6 @@ const draw = function () {
   console.log(participants);
 
   // para usar firebase, tenho que criar um projeto angular, para ter o HttpClient!!!!!!!!!!!!!!!
-  // https://secret-santa-13883-default-rtdb.europe-west1.firebasedatabase.app/
   // enviar para firebase for storage e conferência
 
   // enviar email - sendgrid
